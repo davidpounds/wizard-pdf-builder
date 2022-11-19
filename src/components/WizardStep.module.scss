@@ -1,0 +1,27 @@
+.togglePane {
+    background: #fff;
+    border: none;
+    font-size: inherit;
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    text-align: left;
+    width: 100%;
+
+    &::before {
+        aspect-ratio: 1;
+        content: "";
+        display: inline-block;
+        border-right: 0.2rem solid #777;
+        border-bottom: 0.2rem solid #777;
+        transform: translateX(-1.2rem) rotate(-45deg);
+        width: 0.75rem;
+    }
+
+    &.active::before {
+        transform: translateX(-1rem) rotate(45deg);
+    }
+}
+
+.WizardStep:not(:last-of-type) .togglePane {
+    border-bottom: 1px solid #999;
+}
