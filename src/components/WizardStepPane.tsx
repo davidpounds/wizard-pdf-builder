@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import styles from './WizardStepPane.module.scss';
 
-const WizardStepPane: FC<{}> = () => {
+const WizardStepPane: FC<{ children: any }> = ({ children }) => {
     return (
         <div className={styles.WizardStepPane}>
-            Pane
+            {children}
         </div>
     );
 };

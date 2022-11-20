@@ -8,10 +8,11 @@ export type WizardStepProps = {
     id: string;
     name: string;
     showPane: boolean;
+    Component: FC;
 }
 
 const WizardStep: FC<WizardStepProps> = (props: WizardStepProps) => {
-    const { id, name, showPane } = props;
+    const { id, name, showPane, Component } = props;
 
     const togglePane = (e: React.MouseEvent) => {
         WizardStore.update(s => {
@@ -34,7 +35,9 @@ const WizardStep: FC<WizardStepProps> = (props: WizardStepProps) => {
                 {name}
             </button>
             {showPane && (
-                <WizardStepPane />
+                <WizardStepPane>
+                    <Component />
+                </WizardStepPane>
             )}
         </div>
     );
