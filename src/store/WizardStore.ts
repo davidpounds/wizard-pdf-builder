@@ -1,9 +1,9 @@
 import { Store } from 'pullstate';
 import { WizardStepProps } from '../components/WizardStep';
-import { PaperSizeEnum } from '../components/form/PaperSize';
 import SizeAndLayout from '../components/SizeAndLayout';
 import ColoursAndTypography from '../components/ColoursAndTypography';
 import {
+    PaperSizeEnum,
     FontType,
     TypographyType,
     BackgroundColoursType,

@@ -1,5 +1,9 @@
 import { WizardStepProps } from '../components/WizardStep';
-import { PaperSizeEnum } from '../components/form/PaperSize';
+
+export enum PaperSizeEnum {
+    A4,
+    Letter,
+};
 
 export type FontType = {
     fontFamily: string;

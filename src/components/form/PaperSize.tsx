@@ -2,12 +2,12 @@ import { ChangeEvent, FC } from 'react';
 import FormItemWrapper from './FormItemWrapper';
 import { selectValuesFromEnum } from '../../utils';
 import WizardStore from '../../store/WizardStore';
+import { PaperSizeEnum } from '../../types/store.types';
 
-export enum PaperSizeEnum {
-    A3,
-    A4,
-    Letter,
-};
+export const paperSizeAspectRatios = new Map<PaperSizeEnum, number>([
+    [PaperSizeEnum.A4, 210 / 297],
+    [PaperSizeEnum.Letter, 17 / 22],
+]);
 
 const PaperSize: FC<{}> = () => {
     const size = WizardStore.useState(s => s.paperSize);
