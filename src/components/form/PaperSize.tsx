@@ -2,11 +2,23 @@ import { ChangeEvent, FC } from 'react';
 import FormItemWrapper from './FormItemWrapper';
 import { selectValuesFromEnum } from '../../utils';
 import WizardStore from '../../store/WizardStore';
-import { PaperSizeEnum } from '../../types/store.types';
+import { PaperSizeEnum, PaperSizeUnitsEnum, PaperSizePropertiesType } from '../../types/store.types';
 
-export const paperSizeAspectRatios = new Map<PaperSizeEnum, number>([
-    [PaperSizeEnum.A4, 210 / 297],
-    [PaperSizeEnum.Letter, 17 / 22],
+export const paperSizeAspectRatios = new Map<PaperSizeEnum, PaperSizePropertiesType>([
+    [PaperSizeEnum.A4, {
+        size: PaperSizeEnum.A4,
+        width: 210,
+        height: 297,
+        aspectRatio: 0.7070707071,
+        units: PaperSizeUnitsEnum.Millimeter,
+    }],
+    [PaperSizeEnum.Letter, {
+        size: PaperSizeEnum.Letter,
+        width: 17,
+        height: 22,
+        aspectRatio: 0.7727272727,
+        units: PaperSizeUnitsEnum.Inch,
+    }],
 ]);
 
 const PaperSize: FC<{}> = () => {

@@ -4,41 +4,46 @@ import styles from './PreviewPane.module.scss';
 import { PaperSizeEnum } from '../types/store.types';
 import { paperSizeAspectRatios } from './form/PaperSize';
 import WizardStore from '../store/WizardStore';
+import PDFPreview from './preview/PDFPreview';
 
 const PreviewPane: FC<{}> = () => {
-    const pane = useRef<HTMLDivElement>(null);
+    const paneRef = useRef<HTMLDivElement>(null);
     const paperSize = WizardStore.useState(s => s.paperSize);
-    const aspectRatio = paperSizeAspectRatios.get(paperSize) ?? paperSizeAspectRatios.get(PaperSizeEnum.A4) ?? 1;
-    const [useFullHeight, setUseFullHeight] = useState(true);
-
+    const paperSizeProperties = paperSizeAspectRatios.get(paperSize) ?? paperSizeAspectRatios.get(PaperSizeEnum.A4) ?? null;
+    const [useFullHeight, setUseFullHeight] = useState<boolean>(true);
 
     useEffect(() => {
         const resizeHandler = () => {
-            if (pane.current === null) return;
-            const { clientHeight, clientWidth } = pane.current;
+            if (paneRef.current === null || !paperSizeProperties?.aspectRatio) return;
+            const aspectRatio = paperSizeProperties.aspectRatio;
+            const { clientHeight, clientWidth } = paneRef.current;
             const paneAspectRatio = clientWidth / clientHeight;
             setUseFullHeight(paneAspectRatio > aspectRatio);
         };
 
+        setTimeout(resizeHandler, 50);
         window.addEventListener('resize', resizeHandler);
         return () => {
             window.removeEventListener('resize', resizeHandler);
         };
-    }, [aspectRatio]);
+    }, [paperSizeProperties?.aspectRatio]);
 
 
     return (
         <div
-            ref={pane}
+            ref={paneRef}
             className={styles.PreviewPane}
         >
-            <iframe
-                title="Preview"
-                className={classnames(styles.PreviewIframe, {
+
+            <div
+                className={classnames(styles.PreviewContainer, {
                     [styles.fullHeight]: useFullHeight,
+                    [styles.A4]: paperSizeProperties?.size === PaperSizeEnum.A4,
+                    [styles.Letter]: paperSizeProperties?.size === PaperSizeEnum.Letter,
                 })}
-                style={{ aspectRatio }}
-            ></iframe>
+            >
+                <PDFPreview />
+            </div>
         </div>
     )
 };

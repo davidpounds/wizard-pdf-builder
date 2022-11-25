@@ -5,6 +5,19 @@ export enum PaperSizeEnum {
     Letter,
 };
 
+export enum PaperSizeUnitsEnum {
+    Millimeter,
+    Inch,
+};
+
+export type PaperSizePropertiesType = {
+    size: PaperSizeEnum;
+    aspectRatio: number;
+    width: number;
+    height: number;
+    units: PaperSizeUnitsEnum;
+}
+
 export type FontType = {
     fontFamily: string;
     fontSizePt: number;
@@ -26,8 +39,14 @@ export type BackgroundColoursType = {
     sidebar: string;
 }
 
+export enum SidebarPositionEnum {
+    Left,
+    Right,
+}
+
 export type LayoutColumnsType = {
     sidebar: boolean;
+    sidebarPosition: SidebarPositionEnum;
     sidebarWidth: number;
 }
 

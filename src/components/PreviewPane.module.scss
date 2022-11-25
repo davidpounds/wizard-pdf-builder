@@ -16,10 +16,11 @@ $gradient-colour: rgba(0, 0, 0, 0.08);
     max-height: 100vh;
 }
 
-.PreviewIframe {
-    aspect-ratio: 1;
+.PreviewContainer {
+    aspect-ratio: 0.70707;
     background-color: #fff;
     border: 1px solid #666;
+    transform-origin: top left;
 
     &.fullHeight {
         height: 100%;
@@ -29,5 +30,13 @@ $gradient-colour: rgba(0, 0, 0, 0.08);
     &:not(.fullHeight) {
         max-height: 100%;
         width: 100%;
+    }
+
+    &.A4 {
+        aspect-ratio: 0.7070707071;
+    }
+
+    &.Letter {
+        aspect-ratio: 0.7727272727;
     }
 }
