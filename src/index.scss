@@ -13,3 +13,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
+label:not(input[type="radio"]+label) {
+  display: block;
+}

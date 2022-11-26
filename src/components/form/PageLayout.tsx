@@ -68,16 +68,18 @@ const PageLayout: FC<{}> = () => {
                     </FormItemWrapper>
                     <FormItemWrapper>
                         <label htmlFor="sidebarWidth">Sidebar width</label>
-                        <input
-                            id="sidebarWidth"
-                            type="range"
-                            min={SIDEBAR_WIDTH_MIN}
-                            max={SIDEBAR_WIDTH_MAX}
-                            step={1}
-                            value={layoutColumns.sidebarWidth}
-                            onChange={sidebarWidthChangeHandler}
-                        />
-                        <RangeLabel>{layoutColumns.sidebarWidth}%</RangeLabel>
+                        <div className={styles.rangeWrapper}>
+                            <input
+                                id="sidebarWidth"
+                                type="range"
+                                min={SIDEBAR_WIDTH_MIN}
+                                max={SIDEBAR_WIDTH_MAX}
+                                step={1}
+                                value={layoutColumns.sidebarWidth}
+                                onChange={sidebarWidthChangeHandler}
+                            />
+                            <RangeLabel>{layoutColumns.sidebarWidth}%</RangeLabel>
+                        </div>
                     </FormItemWrapper>
                 </>
             )}
