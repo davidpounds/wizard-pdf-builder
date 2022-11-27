@@ -17,10 +17,8 @@ const WizardStep: FC<WizardStepProps> = (props: WizardStepProps) => {
     const togglePane = (e: React.MouseEvent) => {
         WizardStore.update(s => {
             const currentStep = s.steps.find(step => step.id === id);
-            const currentlyOpen = currentStep?.showPane === true;
-            s.steps.forEach(step => step.showPane = false);
-            if (currentStep && !currentlyOpen) {
-                currentStep.showPane = true;
+            if (currentStep) {
+                currentStep.showPane = !currentStep.showPane;
             }
         });
     };

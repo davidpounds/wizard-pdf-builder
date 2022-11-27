@@ -1,0 +1,27 @@
+.inputWrapper {
+    display: flex;
+
+    &::before {
+        content: "";
+        flex: 0 0 1.3rem;
+        border: 1px solid #444;
+        border-right: none;
+        background: var(--input-colour, linear-gradient(-45deg,
+                    transparent,
+                    transparent calc(50% - 0.5px),
+                    #f00 calc(50% - 0.5px),
+                    #f00 calc(50% + 0.5px),
+                    transparent calc(50% + 0.5px),
+                    transparent));
+    }
+}
+
+.colourInput {
+    background-color: #fff;
+    border: 1px solid #444;
+
+    &:not(.valid) {
+        background-color: #fcc;
+        border: 1px solid #C00;
+    }
+}

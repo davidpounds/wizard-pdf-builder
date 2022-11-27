@@ -4,5 +4,6 @@
 }
 
 .main {
+    background-color: var(--main-background-colour, #fff);
     flex: 1 1 auto;
 }

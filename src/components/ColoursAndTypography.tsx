@@ -1,7 +1,12 @@
 import { FC } from 'react';
+import Colours from './form/Colours';
+import Typography from './form/Typography';
 
 const ColoursAndTypography: FC<{}> = () => (
-    <div>Colours and Typography</div>
+    <>
+        <Colours />
+        <Typography />
+    </>
 );
 
 export default ColoursAndTypography;

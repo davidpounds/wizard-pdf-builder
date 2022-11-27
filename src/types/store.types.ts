@@ -34,6 +34,11 @@ export type TypographyType = {
     sidebarSubHeading: FontType;
 }
 
+export enum BackgroundColoursEnum {
+    Main = 'main',
+    Sidebar = 'sidebar',
+}
+
 export type BackgroundColoursType = {
     main: string;
     sidebar: string;

@@ -10,6 +10,7 @@ import {
     LayoutColumnsType,
     WizardStoreType,
     SidebarPositionEnum,
+    BackgroundColoursEnum,
 } from '../types/store.types';
 
 const steps: WizardStepProps[] = [
@@ -83,8 +84,8 @@ const typography: TypographyType = {
 }
 
 const backgroundColors: BackgroundColoursType = {
-    main: '#fff',
-    sidebar: '#eee',
+    [BackgroundColoursEnum.Main]: '#FFFFFF',
+    [BackgroundColoursEnum.Sidebar]: '#FFCC00',
 };
 
 const layoutColumns: LayoutColumnsType = {

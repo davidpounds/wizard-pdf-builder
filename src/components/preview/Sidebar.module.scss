@@ -1,4 +1,4 @@
 .sidebar {
-    background-color: #fc0;
-    flex: 0 0 var(--sidebarWidth);
+    background-color: var(--sidebar-background-colour, #fff);
+    flex: 0 0 var(--sidebarWidth, 40%);
 }
