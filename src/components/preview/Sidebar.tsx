@@ -1,12 +1,9 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import styles from './Sidebar.module.scss';
 
-const Sidebar: FC<{ sidebarWidth: number, sidebarColour: string, children: any }> = ({ sidebarWidth, sidebarColour, children }) => {
+const Sidebar: FC<{ children: ReactNode }> = ({ children }) => {
     return (
-        <div
-            className={styles.sidebar}
-            style={{ "--sidebarWidth": `${sidebarWidth}%`, "--sidebar-background-colour": sidebarColour } as React.CSSProperties}
-        >{children}</div>
+        <div className={styles.sidebar}>{children}</div>
     );
 };
 

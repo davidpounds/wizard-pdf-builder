@@ -25,6 +25,15 @@ export type FontType = {
     fontWeight: number;
 }
 
+export enum TypographyTypeEnum {
+    BASE = 'base',
+    HEADING = 'heading',
+    SUB_HEADING = 'subHeading',
+    SIDEBAR = 'sidebar',
+    SIDEBAR_HEADING = 'sidebarHeading',
+    SIDEBAR_SUB_HEADING = 'sidebarSubHeading',
+}
+
 export type TypographyType = {
     base: FontType;
     heading: FontType;
@@ -52,7 +61,7 @@ export enum SidebarPositionEnum {
 export type LayoutColumnsType = {
     sidebar: boolean;
     sidebarPosition: SidebarPositionEnum;
-    sidebarWidth: number;
+    sidebarWidthPercent: number;
 }
 
 export type WizardStoreType = {

@@ -27,7 +27,7 @@ const PageLayout: FC<{}> = () => {
     const sidebarWidthChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const newValue = Number.parseInt(e.target.value, 10);
         WizardStore.update(s => {
-            s.layoutColumns.sidebarWidth = newValue;
+            s.layoutColumns.sidebarWidthPercent = newValue;
         });
     };
 
@@ -75,10 +75,10 @@ const PageLayout: FC<{}> = () => {
                                 min={SIDEBAR_WIDTH_MIN}
                                 max={SIDEBAR_WIDTH_MAX}
                                 step={1}
-                                value={layoutColumns.sidebarWidth}
+                                value={layoutColumns.sidebarWidthPercent}
                                 onChange={sidebarWidthChangeHandler}
                             />
-                            <RangeLabel>{layoutColumns.sidebarWidth}%</RangeLabel>
+                            <RangeLabel>{layoutColumns.sidebarWidthPercent}%</RangeLabel>
                         </div>
                     </FormItemWrapper>
                 </>

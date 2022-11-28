@@ -50,7 +50,7 @@ const subHeading: FontType = {
     fontFamily: SANS_SERIF_FONT,
     fontSizePt: 18,
     fontColour: '#666',
-    fontWeight: 600,
+    fontWeight: 200,
 };
 
 const sidebar: FontType = {
@@ -71,7 +71,7 @@ const sidebarSubHeading: FontType = {
     fontFamily: SANS_SERIF_FONT,
     fontSizePt: 18,
     fontColour: '#666',
-    fontWeight: 600,
+    fontWeight: 200,
 };
 
 const typography: TypographyType = {
@@ -91,7 +91,7 @@ const backgroundColors: BackgroundColoursType = {
 const layoutColumns: LayoutColumnsType = {
     sidebar: false,
     sidebarPosition: SidebarPositionEnum.Right,
-    sidebarWidth: 40,
+    sidebarWidthPercent: 40,
 };
 
 const WizardStore = new Store<WizardStoreType>({

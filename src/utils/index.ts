@@ -1,8 +1,7 @@
-import { PaperSizeEnum, PaperSizeUnitsEnum } from "../types/store.types";
-import { paperSizeAspectRatios } from "../components/form/PaperSize";
+import React from 'react';
+import { BackgroundColoursType, TypographyType, LayoutColumnsType } from '../types/store.types';
 
 export const selectValuesFromEnum = (enumInput: any): Map<number, string> => {
-
     const filteredKeys = Object.entries(enumInput).filter(([_, value]) => Number.isNaN(Number(value)));
     const selectValuesMap = filteredKeys.reduce((acc, [key, value]) => {
         const keyVal = Number.parseInt(key, 10);
@@ -14,18 +13,32 @@ export const selectValuesFromEnum = (enumInput: any): Map<number, string> => {
     return selectValuesMap;
 };
 
-export const getPagePixelSize = (paperSize: PaperSizeEnum): { width: number, height: number } => {
-    const unitToPixelMap = new Map<PaperSizeUnitsEnum, number>([
-        [PaperSizeUnitsEnum.Millimeter, 96 / 25.4],
-        [PaperSizeUnitsEnum.Inch, 96],
-    ]);
-    const paperSizeProperties = paperSizeAspectRatios.get(paperSize);
-    if (!paperSizeProperties) {
-        return { width: 0, height: 0 };
+const toDotList = (obj: object): object => {
+    const walk = (into: { [index: string]: any }, obj: any, prefix: string[] = []) => {
+        Object.entries(obj).forEach(([key, val]) => {
+            if (typeof val === "object" && !Array.isArray(val)) {
+                walk(into, val, [...prefix, key]);
+            } else {
+                const dotKey = [...prefix, key].join(".");
+                into[dotKey] = val;
+            }
+        });
     }
-    const unitMultiplier = unitToPixelMap.get(paperSizeProperties.units) ?? 0;
-    return {
-        width: Math.ceil(paperSizeProperties.width * unitMultiplier),
-        height: Math.ceil(paperSizeProperties.height * unitMultiplier),
-    }
+    const out: object = {};
+    walk(out, obj);
+    return out;
+};
+
+export const makeCSSCustomProperties = (properties: object): React.CSSProperties => {
+    const dottedProperties = toDotList(properties);
+    const objectEntriesWithPrefix = Object.entries(dottedProperties)
+        .filter(([_, value]) => typeof value !== "boolean")
+        .map(([key, value]) => {
+            const isPoint = key.endsWith('Pt');
+            const isPercent = key.endsWith('Percent');
+            const dotKey = `--${key.replaceAll(".", "-")}`.replace(/(Pt|Percent)$/, '');
+            const valueWithUnits = isPoint || isPercent ? `${value}${isPoint ? 'pt' : '%'}` : value;
+            return [dotKey, valueWithUnits];
+        });
+    return Object.fromEntries(objectEntriesWithPrefix) as React.CSSProperties;
 };
