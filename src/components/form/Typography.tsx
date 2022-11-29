@@ -16,8 +16,7 @@ const Typography: FC = () => {
         });
     };
 
-    const changeColourFactory = (type: TypographyTypeEnum) => (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+    const changeColourFactory = (type: TypographyTypeEnum) => (value: string) => {
         WizardStore.update(s => {
             s.typography[type].fontColour = value;
         });
@@ -79,7 +78,7 @@ type FontDetailsType = {
     type: TypographyTypeEnum;
     fontDetails: FontType;
     sizeChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
-    colourChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
+    colourChangeHandler: Function;
     weightChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
     fontChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
 }
