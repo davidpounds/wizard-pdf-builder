@@ -1,5 +1,4 @@
 import React from 'react';
-import { BackgroundColoursType, TypographyType, LayoutColumnsType } from '../types/store.types';
 
 export const selectValuesFromEnum = (enumInput: any): Map<number, string> => {
     const filteredKeys = Object.entries(enumInput).filter(([_, value]) => Number.isNaN(Number(value)));
@@ -34,11 +33,12 @@ export const makeCSSCustomProperties = (properties: object): React.CSSProperties
     const objectEntriesWithPrefix = Object.entries(dottedProperties)
         .filter(([_, value]) => typeof value !== "boolean")
         .map(([key, value]) => {
-            const isPoint = key.endsWith('Pt');
             const isPercent = key.endsWith('Percent');
-            const dotKey = `--${key.replaceAll(".", "-")}`.replace(/(Pt|Percent)$/, '');
-            const valueWithUnits = isPoint || isPercent ? `${value}${isPoint ? 'pt' : '%'}` : value;
+            const dotKey = `--${key.replaceAll(".", "-")}`.replace(/Percent$/, '');
+            const valueWithUnits = isPercent ? `${value}%` : value;
             return [dotKey, valueWithUnits];
         });
     return Object.fromEntries(objectEntriesWithPrefix) as React.CSSProperties;
 };
+
+export const mmToInch = (mm: number): number => mm / 25.4;

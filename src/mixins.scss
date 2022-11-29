@@ -1,0 +1,3 @@
+@mixin responsive-text-size($containerSizeInInchesVar, $sizeInPtsVar) {
+    font-size: Calc($sizeInPtsVar / 72 * $containerSizeInInchesVar * 1cqw);
+}
