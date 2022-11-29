@@ -4,8 +4,8 @@ import styles from './ColourInput.module.scss';
 import { getColourType } from '../../utils/colours';
 import RangeLabel from './RangeLabel';
 
-const ColourInput: FC<{ value: string, changeHandler: Function }> = (props: { value: string, changeHandler: Function }) => {
-    const { value, changeHandler } = props;
+const ColourInput: FC<{ value: string, changeHandler: Function, label?: string }> = (props: { value: string, changeHandler: Function, label?: string }) => {
+    const { value, changeHandler, label = null } = props;
     const uuid = crypto.randomUUID();
     const [colourValue, setColourValue] = useState<string>(value);
     const [colourTypeName, setColourTypeName] = useState<string>('');
@@ -35,7 +35,13 @@ const ColourInput: FC<{ value: string, changeHandler: Function }> = (props: { va
 
     return (
         <>
-            <label htmlFor={`colourValue_${uuid}`}>Colour value {valid ? <RangeLabel>detected as {colourTypeName}</RangeLabel> : <RangeLabel>unable to detect format</RangeLabel>}</label>
+            <label htmlFor={`colourValue_${uuid}`}>
+                {label ?? "Colour value"}{" "}
+                {valid
+                    ? <RangeLabel>detected as {colourTypeName}</RangeLabel>
+                    : <RangeLabel>unable to detect format</RangeLabel>
+                }
+            </label>
             <span
                 className={styles.inputWrapper}
                 style={{ "--input-colour": colourValue } as React.CSSProperties}

@@ -11,6 +11,7 @@ import {
     WizardStoreType,
     SidebarPositionEnum,
     BackgroundColoursEnum,
+    TypographyTypeEnum,
 } from '../types/store.types';
 
 const steps: WizardStepProps[] = [
@@ -75,12 +76,12 @@ const sidebarSubHeading: FontType = {
 };
 
 const typography: TypographyType = {
-    base,
-    heading,
-    subHeading,
-    sidebar,
-    sidebarHeading,
-    sidebarSubHeading,
+    [TypographyTypeEnum.BASE]: base,
+    [TypographyTypeEnum.HEADING]: heading,
+    [TypographyTypeEnum.SUB_HEADING]: subHeading,
+    [TypographyTypeEnum.SIDEBAR]: sidebar,
+    [TypographyTypeEnum.SIDEBAR_HEADING]: sidebarHeading,
+    [TypographyTypeEnum.SIDEBAR_SUB_HEADING]: sidebarSubHeading,
 }
 
 const backgroundColors: BackgroundColoursType = {

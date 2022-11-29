@@ -26,21 +26,21 @@ export type FontType = {
 }
 
 export enum TypographyTypeEnum {
-    BASE = 'base',
-    HEADING = 'heading',
-    SUB_HEADING = 'subHeading',
-    SIDEBAR = 'sidebar',
-    SIDEBAR_HEADING = 'sidebarHeading',
-    SIDEBAR_SUB_HEADING = 'sidebarSubHeading',
+    BASE = 'Page',
+    HEADING = 'Heading',
+    SUB_HEADING = 'Sub-heading',
+    SIDEBAR = 'Sidebar',
+    SIDEBAR_HEADING = 'Sidebar heading',
+    SIDEBAR_SUB_HEADING = 'Sidebar sub-heading',
 }
 
 export type TypographyType = {
-    base: FontType;
-    heading: FontType;
-    subHeading: FontType;
-    sidebar: FontType;
-    sidebarHeading: FontType;
-    sidebarSubHeading: FontType;
+    [TypographyTypeEnum.BASE]: FontType;
+    [TypographyTypeEnum.HEADING]: FontType;
+    [TypographyTypeEnum.SUB_HEADING]: FontType;
+    [TypographyTypeEnum.SIDEBAR]: FontType;
+    [TypographyTypeEnum.SIDEBAR_HEADING]: FontType;
+    [TypographyTypeEnum.SIDEBAR_SUB_HEADING]: FontType;
 }
 
 export enum BackgroundColoursEnum {

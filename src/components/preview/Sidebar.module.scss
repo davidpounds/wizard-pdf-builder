@@ -3,23 +3,23 @@
 .sidebar {
     background-color: var(--backgroundColors-sidebar, #fff);
     color: var(--typography-sidebar-fontColour, '#444');
-    flex: 0 0 var(--sidebarWidth, 40%);
-    font-family: var(--typography-sidebar-fontFamily, 'sans-serif');
-    @include responsive-text-size(var(--widthInInches), var(--typography-sidebar-fontSizePt, '12pt'));
-    font-weight: var(--typography-sidebar-fontWeight, 400);
+    flex: 0 0 var(--layoutColumns-sidebarWidth, 40%);
+    font-family: var(--typography-Sidebar-fontFamily, 'sans-serif');
+    @include responsive-text-size(var(--widthInInches), var(--typography-Sidebar-fontSizePt, '12pt'));
+    font-weight: var(--typography-Sidebar-fontWeight, 400);
 
     h1 {
-        color: var(--typography-sidebarHeading-fontColour, '#444');
-        font-family: var(--typography-sidebarHeading-fontFamily, 'sans-serif');
-        @include responsive-text-size(var(--widthInInches), var(--typography-sidebarHeading-fontSizePt, '18pt'));
-        font-weight: var(--typography-sidebarHeading-fontWeight, 600);
+        color: var(--typography-Sidebar-heading-fontColour, '#444');
+        font-family: var(--typography-Sidebar-heading-fontFamily, 'sans-serif');
+        @include responsive-text-size(var(--widthInInches), var(--typography-Sidebar-heading-fontSizePt, '18pt'));
+        font-weight: var(--typography-Sidebar-heading-fontWeight, 600);
     }
 
     h2 {
-        color: var(--typography-sidebarSubHeading-fontColour, '#444');
-        font-family: var(--typography-sidebarSubHeading-fontFamily, 'sans-serif');
-        @include responsive-text-size(var(--widthInInches), var(--typography-sidebarSubHeading-fontSizePt, '14pt'));
-        font-weight: var(--typography-sidebarSubHeading-fontWeight, 600);
+        color: var(--typography-Sidebar-sub-heading-fontColour, '#444');
+        font-family: var(--typography-Sidebar-sub-heading-fontFamily, 'sans-serif');
+        @include responsive-text-size(var(--widthInInches), var(--typography-Sidebar-sub-heading-fontSizePt, '14pt'));
+        font-weight: var(--typography-Sidebar-sub-heading-fontWeight, 600);
     }
 
 }

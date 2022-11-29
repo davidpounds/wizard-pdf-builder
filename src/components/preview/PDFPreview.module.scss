@@ -8,23 +8,23 @@
 
 .main {
     background-color: var(--backgroundColors-main, #fff);
-    color: var(--typography-base-fontColour, '#444');
+    color: var(--typography-Page-fontColour, '#444');
     flex: 1 1 auto;
-    font-family: var(--typography-base-fontFamily, 'sans-serif');
-    @include responsive-text-size(var(--widthInInches), var(--typography-base-fontSizePt, '12pt'));
-    font-weight: var(--typography-base-fontWeight, 400);
+    font-family: var(--typography-Page-fontFamily, 'sans-serif');
+    @include responsive-text-size(var(--widthInInches), var(--typography-Page-fontSizePt, '12pt'));
+    font-weight: var(--typography-Page-fontWeight, 400);
 
     h1 {
-        color: var(--typography-heading-fontColour, '#444');
-        font-family: var(--typography-heading-fontFamily, 'sans-serif');
-        @include responsive-text-size(var(--widthInInches), var(--typography-heading-fontSizePt, '18pt'));
-        font-weight: var(--typography-heading-fontWeight, 600);
+        color: var(--typography-Heading-fontColour, '#444');
+        font-family: var(--typography-Heading-fontFamily, 'sans-serif');
+        @include responsive-text-size(var(--widthInInches), var(--typography-Heading-fontSizePt, '18pt'));
+        font-weight: var(--typography-Heading-fontWeight, 600);
     }
 
     h2 {
-        color: var(--typography-subHeading-fontColour, '#444');
-        font-family: var(--typography-subHeading-fontFamily, 'sans-serif');
-        @include responsive-text-size(var(--widthInInches), var(--typography-subHeading-fontSizePt, '14pt'));
-        font-weight: var(--typography-subHeading-fontWeight, 600);
+        color: var(--typography-Sub-heading-fontColour, '#444');
+        font-family: var(--typography-Sub-heading-fontFamily, 'sans-serif');
+        @include responsive-text-size(var(--widthInInches), var(--typography-Sub-heading-fontSizePt, '14pt'));
+        font-weight: var(--typography-Sub-heading-fontWeight, 600);
     }
 }

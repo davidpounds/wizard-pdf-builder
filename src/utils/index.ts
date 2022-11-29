@@ -34,7 +34,7 @@ export const makeCSSCustomProperties = (properties: object): React.CSSProperties
         .filter(([_, value]) => typeof value !== "boolean")
         .map(([key, value]) => {
             const isPercent = key.endsWith('Percent');
-            const dotKey = `--${key.replaceAll(".", "-")}`.replace(/Percent$/, '');
+            const dotKey = `--${key.replaceAll(/[\.\s]/g, "-")}`.replace(/Percent$/, '');
             const valueWithUnits = isPercent ? `${value}%` : value;
             return [dotKey, valueWithUnits];
         });

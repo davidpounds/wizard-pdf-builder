@@ -1,138 +1,147 @@
 import { FC } from "react";
 import FormItemWrapper from './FormItemWrapper';
+import ColourInput from './ColourInput';
 import RangeLabel from './RangeLabel';
 import WizardStore from '../../store/WizardStore';
-import { TypographyTypeEnum } from '../../types/store.types';
+import { TypographyTypeEnum, FontType } from '../../types/store.types';
 
 const Typography: FC = () => {
-    const {
-        base,
-        heading,
-        subHeading,
-        sidebar,
-        sidebarHeading,
-        sidebarSubHeading,
-    } = WizardStore.useState(s => s.typography);
+    const typography = WizardStore.useState(s => s.typography);
     const hasSidebar = WizardStore.useState(s => s.layoutColumns.sidebar);
 
-    const changeFontSizeFactory = (type: TypographyTypeEnum) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const changeSizeFactory = (type: TypographyTypeEnum) => (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.valueAsNumber;
         WizardStore.update(s => {
             s.typography[type].fontSizePt = value;
         });
     };
 
+    const changeColourFactory = (type: TypographyTypeEnum) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        WizardStore.update(s => {
+            s.typography[type].fontColour = value;
+        });
+    };
+
+    const changeWeightFactory = (type: TypographyTypeEnum) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.valueAsNumber;
+        WizardStore.update(s => {
+            s.typography[type].fontWeight = value;
+        });
+    };
+
+    const changeFontFactory = (type: TypographyTypeEnum) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        WizardStore.update(s => {
+            s.typography[type].fontFamily = value;
+        });
+    };
+
+
     return (
         <>
             <h2>Main page</h2>
-            <fieldset>
-                <legend>Body text</legend>
-                <FormItemWrapper>
-                    <label htmlFor="base-size">Size</label>
-                    <input
-                        id="base-size"
-                        type="range"
-                        min={8}
-                        max={18}
-                        step={1}
-                        value={base.fontSizePt}
-                        onChange={changeFontSizeFactory(TypographyTypeEnum.BASE)}
-                    />
-                    <RangeLabel>{base.fontSizePt}pt</RangeLabel>
-                </FormItemWrapper>
-            </fieldset>
 
-            <fieldset>
-                <legend>Heading</legend>
-                <FormItemWrapper>
-                    <label htmlFor="heading-size">Size</label>
-                    <input
-                        id="heading-size"
-                        type="range"
-                        min={12}
-                        max={72}
-                        step={2}
-                        value={heading.fontSizePt}
-                        onChange={changeFontSizeFactory(TypographyTypeEnum.HEADING)}
-                    />
-                    <RangeLabel>{heading.fontSizePt}pt</RangeLabel>
-                </FormItemWrapper>
-            </fieldset>
-
-            <fieldset>
-                <legend>Subheading</legend>
-                <FormItemWrapper>
-                    <label htmlFor="subheading-size">Size</label>
-                    <input
-                        id="subheading-size"
-                        type="range"
-                        min={12}
-                        max={72}
-                        step={2}
-                        value={subHeading.fontSizePt}
-                        onChange={changeFontSizeFactory(TypographyTypeEnum.SUB_HEADING)}
-                    />
-                    <RangeLabel>{subHeading.fontSizePt}pt</RangeLabel>
-                </FormItemWrapper>
-            </fieldset>
+            {[TypographyTypeEnum.BASE, TypographyTypeEnum.HEADING, TypographyTypeEnum.SUB_HEADING].map(type => (
+                <FontDetails
+                    key={type}
+                    type={type}
+                    fontDetails={typography[type]}
+                    sizeChangeHandler={changeSizeFactory(type)}
+                    colourChangeHandler={changeColourFactory(type)}
+                    weightChangeHandler={changeWeightFactory(type)}
+                    fontChangeHandler={changeFontFactory(type)}
+                />
+            ))}
 
             {hasSidebar && (
                 <>
                     <h2>Sidebar</h2>
-                    <fieldset>
-                        <legend>Sidebar text</legend>
-                        <FormItemWrapper>
-                            <label htmlFor="sidebar-size">Size</label>
-                            <input
-                                id="sidebar-size"
-                                type="range"
-                                min={8}
-                                max={18}
-                                step={1}
-                                value={sidebar.fontSizePt}
-                                onChange={changeFontSizeFactory(TypographyTypeEnum.SIDEBAR)}
-                            />
-                            <RangeLabel>{sidebar.fontSizePt}pt</RangeLabel>
-                        </FormItemWrapper>
-                    </fieldset>
 
-                    <fieldset>
-                        <legend>Sidebar heading</legend>
-                        <FormItemWrapper>
-                            <label htmlFor="sidebar-heading-size">Size</label>
-                            <input
-                                id="sidebar-heading-size"
-                                type="range"
-                                min={12}
-                                max={72}
-                                step={2}
-                                value={sidebarHeading.fontSizePt}
-                                onChange={changeFontSizeFactory(TypographyTypeEnum.SIDEBAR_HEADING)}
-                            />
-                            <RangeLabel>{sidebarHeading.fontSizePt}pt</RangeLabel>
-                        </FormItemWrapper>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Sidebar subheading</legend>
-                        <FormItemWrapper>
-                            <label htmlFor="sidebar-subheading-size">Size</label>
-                            <input
-                                id="sidebar-subheading-size"
-                                type="range"
-                                min={12}
-                                max={72}
-                                step={2}
-                                value={sidebarSubHeading.fontSizePt}
-                                onChange={changeFontSizeFactory(TypographyTypeEnum.SIDEBAR_SUB_HEADING)}
-                            />
-                            <RangeLabel>{sidebarSubHeading.fontSizePt}pt</RangeLabel>
-                        </FormItemWrapper>
-                    </fieldset>
+                    {[TypographyTypeEnum.SIDEBAR, TypographyTypeEnum.SIDEBAR_HEADING, TypographyTypeEnum.SIDEBAR_SUB_HEADING].map(type => (
+                        <FontDetails
+                            key={type}
+                            type={type}
+                            fontDetails={typography[type]}
+                            sizeChangeHandler={changeSizeFactory(type)}
+                            colourChangeHandler={changeColourFactory(type)}
+                            weightChangeHandler={changeWeightFactory(type)}
+                            fontChangeHandler={changeFontFactory(type)}
+                        />
+                    ))}
                 </>
             )}
         </>
     )
+};
+
+type FontDetailsType = {
+    type: TypographyTypeEnum;
+    fontDetails: FontType;
+    sizeChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
+    colourChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
+    weightChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
+    fontChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+const FontDetails: FC<FontDetailsType> = (props: FontDetailsType) => {
+    const {
+        type,
+        fontDetails,
+        sizeChangeHandler,
+        colourChangeHandler,
+        weightChangeHandler,
+        fontChangeHandler,
+    } = props;
+
+    const isHeading = type !== TypographyTypeEnum.SIDEBAR && type !== TypographyTypeEnum.BASE;
+
+    return (
+        <fieldset>
+            <legend>{type}</legend>
+            <FormItemWrapper>
+                <label htmlFor={`${type}-size`}>Size</label>
+                <input
+                    id={`${type}-size`}
+                    type="range"
+                    min={isHeading ? 14 : 8}
+                    max={isHeading ? 72 : 18}
+                    step={isHeading ? 2 : 1}
+                    value={fontDetails.fontSizePt}
+                    onChange={sizeChangeHandler}
+                />
+                <RangeLabel>{fontDetails.fontSizePt}pt</RangeLabel>
+            </FormItemWrapper>
+
+            <FormItemWrapper>
+                <ColourInput changeHandler={colourChangeHandler} value={fontDetails.fontColour} label={`${type} text colour`} />
+            </FormItemWrapper>
+
+            <FormItemWrapper>
+                <label htmlFor={`${type}-weight`}>Weight</label>
+                <input
+                    id={`${type}-weight`}
+                    type="range"
+                    min={100}
+                    max={900}
+                    step={100}
+                    value={fontDetails.fontWeight}
+                    onChange={weightChangeHandler}
+                />
+                <RangeLabel>{fontDetails.fontWeight}</RangeLabel>
+            </FormItemWrapper>
+
+            <FormItemWrapper>
+                <label htmlFor={`${type}-fontFamily`}>Font</label>
+                <input
+                    id={`${type}-fontFamily`}
+                    type="text"
+                    value={fontDetails.fontFamily}
+                    onChange={fontChangeHandler}
+                />
+            </FormItemWrapper>
+        </fieldset>
+    );
 };
 
 export default Typography;
