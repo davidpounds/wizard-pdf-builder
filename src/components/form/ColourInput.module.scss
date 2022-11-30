@@ -19,6 +19,7 @@
 .colourInput {
     background-color: #fff;
     border: 1px solid #444;
+    flex: 1 1 100%;
 
     &:not(.valid) {
         background-color: #fcc;

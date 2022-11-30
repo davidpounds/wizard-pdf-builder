@@ -1,0 +1,20 @@
+.fieldset {
+    margin-top: 1rem;
+    padding-block: 1rem;
+
+    legend {
+        font-weight: 600;
+    }
+
+    [type="text"] {
+        width: 100%;
+    }
+}
+
+.rangeWrapper {
+    display: flex;
+
+    [type="range"] {
+        flex: 1 1 100%;
+    }
+}

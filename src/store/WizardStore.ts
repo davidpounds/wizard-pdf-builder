@@ -86,7 +86,7 @@ const typography: TypographyType = {
 
 const backgroundColors: BackgroundColoursType = {
     [BackgroundColoursEnum.Main]: '#FFFFFF',
-    [BackgroundColoursEnum.Sidebar]: '#FFCC00',
+    [BackgroundColoursEnum.Sidebar]: '#F4F4F4',
 };
 
 const layoutColumns: LayoutColumnsType = {

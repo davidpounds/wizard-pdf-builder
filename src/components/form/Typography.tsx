@@ -4,6 +4,7 @@ import ColourInput from './ColourInput';
 import RangeLabel from './RangeLabel';
 import WizardStore from '../../store/WizardStore';
 import { TypographyTypeEnum, FontType } from '../../types/store.types';
+import styles from './Typography.module.scss';
 
 const Typography: FC = () => {
     const typography = WizardStore.useState(s => s.typography);
@@ -92,48 +93,53 @@ const FontDetails: FC<FontDetailsType> = (props: FontDetailsType) => {
         weightChangeHandler,
         fontChangeHandler,
     } = props;
+    const id = type.replaceAll(' ', '-').toLowerCase();
 
     const isHeading = type !== TypographyTypeEnum.SIDEBAR && type !== TypographyTypeEnum.BASE;
 
     return (
-        <fieldset>
+        <fieldset className={styles.fieldset}>
             <legend>{type}</legend>
             <FormItemWrapper>
-                <label htmlFor={`${type}-size`}>Size</label>
-                <input
-                    id={`${type}-size`}
-                    type="range"
-                    min={isHeading ? 14 : 8}
-                    max={isHeading ? 72 : 18}
-                    step={isHeading ? 2 : 1}
-                    value={fontDetails.fontSizePt}
-                    onChange={sizeChangeHandler}
-                />
-                <RangeLabel>{fontDetails.fontSizePt}pt</RangeLabel>
+                <label htmlFor={`${id}-size`}>Size</label>
+                <span className={styles.rangeWrapper}>
+                    <input
+                        id={`${id}-size`}
+                        type="range"
+                        min={isHeading ? 14 : 8}
+                        max={isHeading ? 72 : 18}
+                        step={isHeading ? 2 : 1}
+                        value={fontDetails.fontSizePt}
+                        onChange={sizeChangeHandler}
+                    />
+                    <RangeLabel>{fontDetails.fontSizePt}pt</RangeLabel>
+                </span>
             </FormItemWrapper>
 
             <FormItemWrapper>
-                <ColourInput changeHandler={colourChangeHandler} value={fontDetails.fontColour} label={`${type} text colour`} />
+                <ColourInput changeHandler={colourChangeHandler} value={fontDetails.fontColour} label="Colour" />
             </FormItemWrapper>
 
             <FormItemWrapper>
-                <label htmlFor={`${type}-weight`}>Weight</label>
-                <input
-                    id={`${type}-weight`}
-                    type="range"
-                    min={100}
-                    max={900}
-                    step={100}
-                    value={fontDetails.fontWeight}
-                    onChange={weightChangeHandler}
-                />
-                <RangeLabel>{fontDetails.fontWeight}</RangeLabel>
+                <label htmlFor={`${id}-weight`}>Weight</label>
+                <span className={styles.rangeWrapper}>
+                    <input
+                        id={`${id}-weight`}
+                        type="range"
+                        min={100}
+                        max={900}
+                        step={100}
+                        value={fontDetails.fontWeight}
+                        onChange={weightChangeHandler}
+                    />
+                    <RangeLabel>{fontDetails.fontWeight}</RangeLabel>
+                </span>
             </FormItemWrapper>
 
             <FormItemWrapper>
-                <label htmlFor={`${type}-fontFamily`}>Font</label>
+                <label htmlFor={`${id}-fontFamily`}>Font</label>
                 <input
-                    id={`${type}-fontFamily`}
+                    id={`${id}-fontFamily`}
                     type="text"
                     value={fontDetails.fontFamily}
                     onChange={fontChangeHandler}

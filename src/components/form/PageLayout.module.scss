@@ -4,4 +4,8 @@
 
 .rangeWrapper {
     display: flex;
+
+    [type="range"] {
+        flex: 1 1 100%;
+    }
 }
